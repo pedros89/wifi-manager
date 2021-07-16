@@ -11,11 +11,16 @@ void setup() {
   pinMode(15,INPUT); //for resetting WiFi creds
   EEPROM.begin(400);
   Serial.begin(115200);
-  if(!CheckWIFICreds()){
-    Serial.println("No WIFI credentials stored in memory. Loading form...");
+
+ //   Serial.println("No WIFI credentials stored in memory. Loading form...");
     digitalWrite(2,HIGH);
-    while(loadWIFICredsForm());
-  }
+    if(!CheckWIFICreds()){
+    Serial.println("not saved in memory.");
+    }
+    else {
+      Serial.println("saved in memory.");
+    }    
+    while(loadWIFICredsForm()); 
 }
 
 void loop() {
